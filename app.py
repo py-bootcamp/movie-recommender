@@ -1,11 +1,14 @@
 import os
 import json
 import cherrypy
+from pathlib import Path
 from random import choice
 
 PORT = os.environ.get('PORT', 8888)
 
-with open("movies.json", "r") as f:
+FOLDER_PATH = Path(__file__).parent
+
+with open(FOLDER_PATH / "movies.json", "r") as f:
     MOVIES = json.loads(f.read())
 
 class Movie:
