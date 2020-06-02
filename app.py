@@ -1,8 +1,8 @@
 import os
 import json
-import cherrypy
 from pathlib import Path
 from random import choice
+import cherrypy
 
 PORT = os.environ.get('PORT', 8888)
 
@@ -16,7 +16,6 @@ class Movie:
     @cherrypy.tools.json_out()
     def index(self):
         return {"movie": choice(MOVIES)}
-
 
 cherrypy.quickstart(
     Movie(), config=cherrypy.config.update({
