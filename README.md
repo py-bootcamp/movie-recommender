@@ -18,5 +18,5 @@ docker build -t movie-recommender .
 ## To run the docker image
 
 ```bash
-docker run -p 8888:8888 movie-recommender python app.py
+docker run --rm -p 8888:8888 movie-recommender python app.py
 ```
