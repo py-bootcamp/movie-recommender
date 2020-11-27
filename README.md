@@ -1,22 +1,12 @@
-# A (Random) movie recommender
+# A (Random) movie recommender running as GCP Cloud Function
 
-## To run the app
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python app.py
-```
-
-## To build the docker image
+## To deploy this function on GCP
 
 ```bash
-docker build -t movie-recommender .
-```
-
-## To run the docker image
-
-```bash
-docker run --rm -p 8888:8888 movie-recommender python app.py
+gcloud functions deploy movie-recommender \
+    --entry-point recommend_movie \
+    --runtime python38 \
+    --trigger-http \
+    --allow-unauthenticated \
+    --region=europe-west1
 ```
