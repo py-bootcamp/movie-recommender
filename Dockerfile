@@ -22,6 +22,7 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+RUN chown user /tini
 USER user
 
 ENTRYPOINT ["/tini", "--"]
