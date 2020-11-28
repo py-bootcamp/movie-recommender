@@ -1,4 +1,4 @@
-# A (Random) movie recommender running on GCP Cloud Run
+# A (Random) movie recommender running on GCP App Engine
 
 ## To run the app
 
@@ -9,31 +9,15 @@ pip install -r requirements.txt
 gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker
 ```
 
-## To build the docker image
+## How to deploy it to GCP App Engine
 
+If it's the first time you need to `create` the app
 ```bash
-docker build -t movie-recommender .
+gcloud app create
 ```
 
-## To run the docker image
+After you created the app you can `deploy` (same thing if you need to deploy changes)
 
 ```bash
-docker run --rm -p 8000:8000 movie-recommender gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker
-```
-
-## How to deploy it to GCP Cloud Run
-
-In case you want to use the GCP Container Registry:
-```bash
-gcloud builds submit --tag eu.gcr.io/{YOUR-PROJECT}/movie-recommender
-```
-
-To deploy the image to GCP Cloud Run:
-```bash
-gcloud run deploy movie-recommender \
-    --image eu.gcr.io/{YOUR-PROJECT}/movie-recommender \
-    --platform managed \
-    --allow-unauthenticated \
-    --region europe-west1 \
-    --args=gunicorn,main:app,-w,4,-k,uvicorn.workers.UvicornWorker
+gcloud app deploy
 ```
